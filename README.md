@@ -23,9 +23,9 @@ WIP
 &nbsp;&nbsp;&nbsp;&nbsp;[Tests](#tests)  
 
 # Getting started
-## Requirements
-Java 21+  
-Docker or Podman  
+Requires  
+* Java 21+  
+* Docker or Podman  
 
 For local development run `./gradlew bootRun`, for building a jar locally `./gradlew bootJar`.  
 Run Services (Keycloak, postgres, etc.) with `docker compose up` or `podman compose up`.  
