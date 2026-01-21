@@ -12,15 +12,26 @@ Includes apidocs.html for rendering openapi docs in scalar, which i think look p
 WIP
 
 # Contents
-[Guides](#foo)
-* [Database](#database)
-  * [TLDR](#database-tldr)
-  * [Non TLDR](#database-non-tldr)
-* [Security](#security)
-  * [TLDR](#security-tldr)
-  * [Non TLDR](#security-non-tldr)
-* [Tests](#tests)
+[Getting Started](#getting-started)  
+[Guides](#foo)  
+&nbsp;&nbsp;&nbsp;&nbsp;[Database](#database)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TLDR](#database-tldr)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Non TLDR](#database-non-tldr)  
+&nbsp;&nbsp;&nbsp;&nbsp;[Security](#security)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TLDR](#security-tldr)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Non TLDR](#security-non-tldr)  
+&nbsp;&nbsp;&nbsp;&nbsp;[Tests](#tests)  
 
+# Getting started
+## Requirements
+Java 21+  
+Docker or Podman  
+
+For local development run `./gradlew bootRun`, for building a jar locally `./gradlew bootJar`.  
+Run Services (Keycloak, postgres, etc.) with `docker compose up` or `podman compose up`.  
+Run individual services with `<docker|pdoman> compose up <servicename>`.  
+Rebuild without nuking containers with `<docker|podman> compose up --build`.  
+Run tests with `./gradlew test`, generates coverage report with jacoco
 # Guides
 Some documentation for my own future sanity
 ## Database
