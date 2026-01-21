@@ -31,7 +31,8 @@ For local development run `./gradlew bootRun`, for building a jar locally `./gra
 Run Services (Keycloak, postgres, etc.) with `docker compose up` or `podman compose up`.  
 Run individual services with `<docker|pdoman> compose up <servicename>`.  
 Rebuild without nuking containers with `<docker|podman> compose up --build`.  
-Run tests with `./gradlew test`, generates coverage report with jacoco
+Run tests with `./gradlew test`, generates coverage report with jacoco  
+While the api is running, open the `apidocs.html` static html file in a browser to view apidocs
 # Guides
 Some documentation for my own future sanity
 ## Database
