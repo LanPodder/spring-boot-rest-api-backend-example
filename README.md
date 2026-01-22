@@ -22,6 +22,7 @@ WIP
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TLDR](#security-tldr)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Non TLDR](#security-non-tldr)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Tests](#tests)  
+[Keycloak](#keycloak)  
 
 # Getting started
 Requires  
@@ -136,3 +137,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 ```
 to allow us to use `post(), get(), put(), delete()` as well as `status, jsonPath` and whatever else there is for sending requests and validating responses.  
 Because we are using security, we annotate every controllertest with `@WithMockUser(username = "whatever", roles = "whatever")` in order to be authenticated (unless we test for unauthenticated or unauthorized)
+
+# Keycloak
+Running a simple keycloak docker container from docker compose causes a ton of problems somehow. We know docker containers communicate via their containername as hostname. So if we call `localhost` from inside our api container, we would be unable to reach our keycloak container as both have different `localhost`s. Therefore one would think we need to set the issuer uri to `keycloak:8080`, however this causes us to be unable to reach our keycloak admin console at `localhost:8080` in our browsers (at least on windows, we get redirected to `keycloak:8080` in our browser which is invalid/unreachable).  
+Therefore we need to set the KC_HOSTNAME to localhost which causes the issuer in our jwt tokens to be set to `localhost:8080`. So we set our issuer uri to `localhost` in our api container. However when our api container tries to send a request to `localhost:8080` it does not reach our keycloak container -.-  
+The solution is to add
+```yaml
+    extra_hosts:
+      - "localhost:host-gateway"
+```
+to our api container and be done with it. Thats not something we should keep in any production environment.  
+A possible different, cleaner solution couldve been adding `KC_HOSTNAME_ADMIN: http://localhost:8080` next to `KC_HOSTNAME: http://keycloak:8080` which is supposed to assign a different hostname for our admin console, however when opening `localhost:8080` it somehow tries to render this iframe:
+```
+<iframe src="http://keycloak:8080/realms/master/protocol/openid-connect/3p-cookies/step1.html" ...
+```
+So yeah unless that gets fixed this approach is unusable.
