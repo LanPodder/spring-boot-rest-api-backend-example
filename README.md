@@ -7,7 +7,8 @@ A sample backend API in spring boot including
 * openapi docs
 
 so dont lose my mind every time i setup a new backend project.  
-Includes apidocs.html for rendering openapi docs in scalar, which i think look pretty.
+Includes apidocs.html for rendering openapi docs in scalar, which i think look pretty.  
+Would love to use Kotlin for source code but vscode extension is too unstable for now (yes i use vscode, come at me intellij fanboys).
 
 WIP
 

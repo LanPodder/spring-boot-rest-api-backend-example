@@ -8,12 +8,17 @@ import org.springframework.stereotype.Service;
 public class ProductService {
   private final ProductRepository productRepository;
   private final ProductMapper productMapper;
-  public ProductService(ProductRepository productRepository, ProductMapper productMapper){
+
+  public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
     this.productRepository = productRepository;
     this.productMapper = productMapper;
   }
 
-  public List<ProductDTO> getAllProducts(){
+  public List<ProductDTO> getAllProducts() {
     return productMapper.allToDTO(productRepository.findAll());
+  }
+
+  public ProductDTO createProduct(ProductDTO productDTO) {
+    return productMapper.toDTO(productRepository.save(productMapper.toEntity(productDTO)));
   }
 }

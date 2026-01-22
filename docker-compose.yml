@@ -71,7 +71,6 @@ services:
       - minio
     volumes:
     - ./src:/app/src
-    - ./target:/app/target
   
 volumes:
   postgres_data:
