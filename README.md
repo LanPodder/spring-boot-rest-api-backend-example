@@ -107,12 +107,12 @@ then using this http parameter we can add configurations.
 we add `.requestMatchers("/openapi/**").permitAll()` so we can access our openapi docs without needing to authenticate
 
 ## Tests
-Apparently there is a huge difference between @SpringBootTest, @WebMvcTest and no test class annotation but just @Test annotations on methods. Apparently @SpringBootTest is used to run integration tests and not required for unit tests. Turns out @SpringBootTest causes the entire context to be created, meaning every bean gets created. This caused issues with Security. The solution was to add 
+Apparently there is a huge difference between `@SpringBootTest`, `@WebMvcTest` and no test class annotation but just `@Test` annotations on methods. Apparently `@SpringBootTest` is used to run integration tests and not required for unit tests. Turns out `@SpringBootTest` causes the entire context to be created, meaning every bean, service and whatnot gets created. This caused issues with Security as we would need to mock security related beans in every test. The solution was to add 
 ```java
 @MockitoBean
 JwtDecoder jwtDecoder;
 ```
-to the main @SpringBootTest and avoid using that for the majority of tests.
+to the main `@SpringBootTest` and avoid using that for the majority of tests.
 It turns out when testing services we dont even need class annotations, we can simply instantiate the service with `new WhateverService()` or if we need dependencies such as a repository, we use following mock annotations:
 ```java
 @Mock
