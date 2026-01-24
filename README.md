@@ -151,4 +151,5 @@ A possible different, cleaner solution couldve been adding `KC_HOSTNAME_ADMIN: h
 ```
 <iframe src="http://keycloak:8080/realms/master/protocol/openid-connect/3p-cookies/step1.html" ...
 ```
-So yeah unless that gets fixed this approach is unusable.
+So yeah unless that gets fixed this approach is unusable.  
+Update: [Keycloak GitHub Issue](https://github.com/keycloak/keycloak/issues/45732), it will not be fixed
